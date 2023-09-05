@@ -33,7 +33,11 @@ export default function CrudApp() {
     const [dB, setDB] = useState(initialDB);
     const [dataToEdit, setDataToEdit] = useState(null);
     function createData(data) {
-
+        data.id = Date.now();
+        setDB([
+            ...initialDB,
+            data
+        ]);
     }
 
     function updateData(data) {
@@ -46,8 +50,17 @@ export default function CrudApp() {
     return (
         <>
             <h2>Crud APP</h2>
-            <CrudForm createData={createData} updateData={updateData} deleteData={deleteData}/>
-            <CrudTable data={dB}/>
+            <CrudForm 
+            createData={createData} 
+            updateData={updateData} 
+            dataToEdit={dataToEdit} 
+            setDataToEdit={setDataToEdit}
+            />
+            <CrudTable 
+            data={dB} 
+            deleteData={deleteData}
+            setDataToEdit={setDataToEdit}
+            />
         </>
         
     )

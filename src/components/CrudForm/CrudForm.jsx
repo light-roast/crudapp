@@ -1,21 +1,39 @@
 import { useState } from "react"
 
-export default function CrudForm() {
+export default function CrudForm({createData, updateData, dataToEdit, setDataToEdit}) {
     const [form, setForm] = useState({
         name: "",
         title: "",
         id: null
     });
     function handleChange(e) {
-
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        })
     }
 
     function handleReset(e) {
-
+        setForm({
+            name: "",
+            title: "",
+            id: null
+        });
+        setDataToEdit(null);
     }
 
     function handleSubmit(e) {
-        
+        e.preventDefault();
+        if (!form.name || !form.title) {
+            alert('Incompleted data');
+            return
+        }
+        if (form.id === null) {
+            createData(form)
+        } else {
+            updateData(form)
+        }
+        handleReset();
     }
 
     return (
