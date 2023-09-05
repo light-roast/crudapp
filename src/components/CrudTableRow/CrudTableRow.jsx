@@ -1,11 +1,12 @@
-export default function CrudTableRow({char}) {
+export default function CrudTableRow({char, setDataToEdit, deleteData}) {
+    let {name, title, id} = char;
     return(
         <tr>
-            <td>{char.name}</td>
-            <td>{char.title}</td>
+            <td>{name}</td>
+            <td>{title}</td>
             <td>
-                <button>Edit</button>
-                <button>Delete</button>
+                <button onClick={() => setDataToEdit(char)}>Edit</button>
+                <button onClick={()=> deleteData(id)}>Delete</button>
             </td>
         </tr>    
            )

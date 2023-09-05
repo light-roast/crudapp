@@ -1,6 +1,6 @@
 import CrudTableRow from "../CrudTableRow/CrudTableRow"
 
-export default function CrudTable({data}) {
+export default function CrudTable({data, setDataToEdit, deleteData}) {
     return (
         <div>
             <h3>Table</h3>
@@ -14,7 +14,12 @@ export default function CrudTable({data}) {
                 </thead>
                 <tbody>
                     {data.length === 0 ? <tr><td colSpan="3">Sin datos</td></tr> : data.map(char => {
-                        return <CrudTableRow char={char} key={char.id}/>
+                        return <CrudTableRow 
+                                char={char} 
+                                key={char.id} 
+                                setDataToEdit={setDataToEdit} 
+                                deleteData={deleteData}
+                                />
                     })}
                 </tbody>
             </table>

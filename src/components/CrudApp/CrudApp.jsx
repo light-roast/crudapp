@@ -35,17 +35,23 @@ export default function CrudApp() {
     function createData(data) {
         data.id = Date.now();
         setDB([
-            ...initialDB,
+            ...dB,
             data
         ]);
     }
 
     function updateData(data) {
-
+      let newData = dB.map((el) => {
+        return el.id === data.id ? data:el
+      });
+      setDB(newData);
+      setDataToEdit(null);
+      
     }
 
     function deleteData(id) {
-
+      let newData = dB.filter((el) => (el.id !== id));
+      setDB(newData);
     }
     return (
         <>
