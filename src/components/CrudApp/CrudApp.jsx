@@ -31,10 +31,22 @@ const initialDB = [
   ];
 export default function CrudApp() {
     const [dB, setDB] = useState(initialDB);
+    const [dataToEdit, setDataToEdit] = useState(null);
+    function createData(data) {
+
+    }
+
+    function updateData(data) {
+
+    }
+
+    function deleteData(id) {
+
+    }
     return (
         <>
             <h2>Crud APP</h2>
-            <CrudForm/>
+            <CrudForm createData={createData} updateData={updateData} deleteData={deleteData}/>
             <CrudTable data={dB}/>
         </>
         
