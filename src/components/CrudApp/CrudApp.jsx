@@ -49,9 +49,13 @@ export default function CrudApp() {
       
     }
 
-    function deleteData(id) {
-      let newData = dB.filter((el) => (el.id !== id));
+    function deleteData(id, name) {
+      let isDelete = confirm(`Are you sure you want to delete this item with the name ${name}?`);
+      if (isDelete) {
+        let newData = dB.filter((el) => (el.id !== id));
       setDB(newData);
+      };
+      
     }
     return (
         <>
