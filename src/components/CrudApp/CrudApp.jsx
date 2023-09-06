@@ -53,13 +53,17 @@ export default function CrudApp() {
       let isDelete = confirm(`Are you sure you want to delete this item with the name ${name}?`);
       if (isDelete) {
         let newData = dB.filter((el) => (el.id !== id));
-      setDB(newData);
+        setDB(newData);
+        setDataToEdit(null);
       };
+
       
     }
     return (
         <>
             <h2>Crud APP</h2>
+            <hr></hr>
+            <article className="grid-1-2">
             <CrudForm 
             createData={createData} 
             updateData={updateData} 
@@ -71,6 +75,7 @@ export default function CrudApp() {
             deleteData={deleteData}
             setDataToEdit={setDataToEdit}
             />
+            </article>
         </>
         
     )

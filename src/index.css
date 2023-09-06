@@ -1,0 +1,80 @@
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: sans-serif;
+    
+    
+}
+
+*,
+*:after,
+*::before {
+    box-sizing: inherit;
+}
+h1, h2 {
+    text-align: center;
+}
+
+input[type="text"] {
+    border: thin solid #dedede;
+    border-radius: .25rem;
+    padding: .75rem;
+    margin-bottom: 1rem;
+    outline:invert;
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    line-height: 1;
+    background-color: transparent;
+}
+
+button, 
+input[type="reset"], 
+input[type="submit"] {
+   border: thin solid #444;
+   border-radius: .25rem;
+   padding: .5rem 1rem;
+   margin-right: .5rem;
+   background-color: #eee;
+   color: #444;
+   font-weight: bold;
+   font-size: 1rem;
+   line-height: 1;
+   text-transform: none;
+   text-decoration: none;
+   text-align: center;
+   vertical-align: center;
+   cursor: pointer;
+   display: inline-block;
+   width: 5rem;
+}
+
+form {
+    margin-bottom: 1rem;
+}
+
+hr {
+    margin: 2rem auto;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;   
+    width: 100%; 
+}
+
+th,
+td {
+    text-align: left;
+    padding: .5rem;
+    border-bottom: thin solid #dedede;
+}
+
+@media screen and (min-width: 1024px) {
+    .grid-1-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+        gap: 2rem;
+    }
+}
