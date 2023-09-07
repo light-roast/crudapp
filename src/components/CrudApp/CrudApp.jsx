@@ -60,9 +60,7 @@ export default function CrudApp() {
       
     }
     return (
-        <>
-            <h2>Crud APP</h2>
-            <hr></hr>
+        <>                  
             <article className="grid-1-2">
             <CrudForm 
             createData={createData} 
