@@ -1,10 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CrudForm from "../CrudForm/CrudForm";
 import CrudTable from "../CrudTable/CrudTable";
+import { helpFetch } from "../../helpers/helphttp";
 
 export default function CrudApi() {
+    let api = helpFetch();
+    let url = "http://localhost:3000/RMCharacters";
     const [dB, setDB] = useState([]);
     const [dataToEdit, setDataToEdit] = useState(null);
+    useEffect(() => {
+      api.get(url).then((result) => {
+        if(!result.err) {
+          setDB(result);
+        } else {
+          setDB([])
+        }
+            })
+    }, [])
+    
+    
     
     function createData(data) {
         data.id = Date.now();
@@ -28,7 +42,7 @@ export default function CrudApi() {
         let newData = dB.filter((el) => (el.id !== id));
         setDB(newData);
         setDataToEdit(null);
-      };
+      }
 
       
     }

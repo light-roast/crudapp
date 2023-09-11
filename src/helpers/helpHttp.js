@@ -1,4 +1,4 @@
-export function customFetch() {
+export function helpFetch() {
     const customFetch = (endpoint, options) => {
         const defaultHeaders = {
             accept: "application/json"     
@@ -9,14 +9,19 @@ export function customFetch() {
         options.headers = options.headers ? {...defaultHeaders, ...options.headers} : defaultHeaders;
         options.body = JSON.stringify(options.body) || false;
         if(options.body === false) delete options.body;
-        console.log(options);
-        setTimeout(() => controller.abort(), 3000);
+        setTimeout(() => {
+            controller.abort();
+        }, 3000);
         
         return fetch(endpoint, options)
         .then(res => {
-            res.ok ? res.json() : Promise.reject({err: true, status: res.status || "00", statusText: res.statusText || "An error happens"});
+            if (res.ok) {
+                return res.json();
+            } else {
+                return Promise.reject({err: true, status: res.status || "00", statusText: res.statusText || "An error happens"});
+            }
         })
-        .catch(err);
+        .catch((err) => err);
     }
 
     const get = (url, options = {}) => {
