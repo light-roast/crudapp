@@ -5,6 +5,7 @@ import CrudTable from "../CrudTable/CrudTable";
 export default function CrudApi() {
     const [dB, setDB] = useState([]);
     const [dataToEdit, setDataToEdit] = useState(null);
+    
     function createData(data) {
         data.id = Date.now();
         setDB([
