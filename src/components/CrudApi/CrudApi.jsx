@@ -7,7 +7,7 @@ import Message from "../Message/Message";
 
 export default function CrudApi() {
     let api = helpFetch();
-    let url = "http://localhost:3000/RMCharacters";
+    let url = "http://localhost:3000/RMCharacter";
     const [dB, setDB] = useState(null);
     const [dataToEdit, setDataToEdit] = useState(null);
     const [error, setError] = useState(null);
@@ -69,7 +69,10 @@ export default function CrudApi() {
             setDataToEdit={setDataToEdit}
             />
             {loading && <Loader />}
-            {error && <Message/>}
+            {error && <Message
+                        msg={`Error ${error.status}: ${error.statusText}`}
+                        bgColor="#dc3545"
+                        />}
             {dB && <CrudTable 
               data={dB} 
               deleteData={deleteData}
