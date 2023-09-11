@@ -2,30 +2,43 @@ import { useEffect, useState } from "react";
 import CrudForm from "../CrudForm/CrudForm";
 import CrudTable from "../CrudTable/CrudTable";
 import { helpFetch } from "../../helpers/helphttp";
+import Loader from "../Loader/Loader";
+import Message from "../Message/Message";
 
 export default function CrudApi() {
     let api = helpFetch();
     let url = "http://localhost:3000/RMCharacters";
-    const [dB, setDB] = useState([]);
+    const [dB, setDB] = useState(null);
     const [dataToEdit, setDataToEdit] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
+      setLoading(true);
       api.get(url).then((result) => {
         if(!result.err) {
           setDB(result);
+          setError(null);
         } else {
-          setDB([])
+          setDB(null)
+          setError(result);
         }
+      setLoading(false);
             })
-    }, [])
+    }, [setDB])
     
     
     
     function createData(data) {
         data.id = Date.now();
-        setDB([
-            ...dB,
-            data
-        ]);
+        let object = {};
+        object.body = {
+          id: data.id,
+          name: data.name,
+          title: data.title
+        };
+        
+        api.post(url, object);
+        
     }
 
     function updateData(data) {
@@ -55,11 +68,14 @@ export default function CrudApi() {
             dataToEdit={dataToEdit} 
             setDataToEdit={setDataToEdit}
             />
-            <CrudTable 
-            data={dB} 
-            deleteData={deleteData}
-            setDataToEdit={setDataToEdit}
-            />
+            {loading && <Loader />}
+            {error && <Message/>}
+            {dB && <CrudTable 
+              data={dB} 
+              deleteData={deleteData}
+              setDataToEdit={setDataToEdit}
+            />}
+            
             </article>
         </>
         
