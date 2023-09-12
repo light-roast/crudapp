@@ -70,11 +70,27 @@ export default function CrudApi() {
 
     function deleteData(id, name) {
       let isDelete = confirm(`Are you sure you want to delete this item with the name ${name}?`);
-      if (isDelete) {
-        let newData = dB.filter((el) => (el.id !== id));
-        setDB(newData);
-        setDataToEdit(null);
+      let endpoint = url+"/"+id;
+      //probably erase this object options, not needed
+      const options = {
+        headers: {
+          "content-type": "application/json"
+        }
+      };
+
+      if(isDelete) {
+        helpFetch().del(endpoint, options).then((res)=> {
+          if(!res.err) {
+            let newData = dB.filter((el) => (el.id !== id));
+            setDB(newData);
+            setDataToEdit(null);        
+          } else {
+            setError(res);
+          }
+        })
       }
+      
+      
 
       
     }
