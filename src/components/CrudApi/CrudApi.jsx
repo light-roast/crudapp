@@ -47,11 +47,25 @@ export default function CrudApi() {
     }
 
     function updateData(data) {
-      let newData = dB.map((el) => {
-        return el.id === data.id ? data:el
-      });
-      setDB(newData);
-      setDataToEdit(null);
+      let endpoint = url+"/"+data.id;
+      const options = {
+        body: data,
+        headers: {
+          "content-type": "application/json"
+        }
+      };
+      helpFetch().put(endpoint, options).then((res)=> {
+        if(!res.err) {
+          let newData = dB.map((el) => {
+            return el.id === data.id ? data:el
+          });
+          setDB(newData);
+          setDataToEdit(null);
+        } else {
+          setError(res);
+        }
+      })
+      
       }
 
     function deleteData(id, name) {
