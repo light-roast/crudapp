@@ -23,14 +23,26 @@ export default function CrudApi() {
         }
       setLoading(false);
             })
-    }, [url])
+    }, [])
     
     
     
     function createData(data) {
         data.id = Date.now();
-             
-        api.post(url, {body: data}).then(res => console.log(res));
+        const options = {
+          body: data, 
+          headers: {
+            "content-type": "application/json"
+          }
+        };
+        helpFetch().post(url, options).then((res) => {
+          console.log(res)
+          if(!res.err) {
+            setDB([...dB, res]);
+          } else {
+            setError(res);
+          }
+        });
         
     }
 
