@@ -1,8 +1,8 @@
-import './loader.css';
+import styles from './loader.module.css';
 export default function Loader() {
     return (
-        <main>
-            <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <main className={styles.main}>
+            <div className={styles["lds-roller"]}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         </main>
     )
 };  

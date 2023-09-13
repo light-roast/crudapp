@@ -13,14 +13,14 @@ export default function CrudTable({data, setDataToEdit, deleteData}) {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.length === 0 ? <tr><td colSpan="3">No data</td></tr> : data.map(char => {
+                    {data.length > 0 ? data.map(char => {
                         return <CrudTableRow 
                                 char={char} 
                                 key={char.id} 
                                 setDataToEdit={setDataToEdit} 
                                 deleteData={deleteData}
                                 />
-                    })}
+                    }): <tr><td colSpan="3">No data</td></tr>}
                 </tbody>
             </table>
         </div>
