@@ -1,9 +1,3 @@
----
-runme:
-  id: 01HJ4KJ322RCAGJGKZDCSVVPNG
-  version: v2.0
----
-
 # CRUD API - CRUD IMPLEMENTATION PRACTICE USING REACT
 
 This is a practice for consuming REST APIs using React, involving a hardcore DB initially and then a JSON DB that works with JSON server.
