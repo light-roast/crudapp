@@ -55,7 +55,7 @@ export default function CrudApp() {
         let newData = dB.filter((el) => (el.id !== id));
         setDB(newData);
         setDataToEdit(null);
-      };
+      }
 
       
     }
